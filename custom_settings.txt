@@ -1,0 +1,49 @@
+## Settings that define ProhibitedPolygonRwp movement with two groups.
+## One group is confined inside the polygon, the other outside.
+
+# General settings
+Scenario.name = StudentMovement1
+Scenario.endTime = 36000
+Scenario.updateInterval = 1
+Scenario.simulateConnections = true
+MovementModel.worldSize = 4500,4500
+
+# Message passing
+Events.nrof = 1
+Events1.class = MessageEventGenerator
+Events1.interval = 10,15
+Events1.size = 50k,250k
+Events1.hosts = 0,500
+Events1.toHosts = 0,0
+Events1.prefix = M
+
+# Communication Interface
+myInterface.type = SimpleBroadcastInterface
+myInterface.transmitRange = 10
+myInterface.transmitSpeed = 250k
+
+# Groups
+Scenario.nrofHostGroups = 1
+
+Group1.groupID = x
+Group1.nrofHosts = 500
+Group1.nrofInterfaces = 1
+Group1.interface1 = myInterface
+Group1.movementModel = StudentMovement
+Group1.router = EpidemicRouter
+Group1.bufferSize = 100M
+Group1.waitTime = 0,0
+
+# Reports
+Report.nrofReports = 3
+Report.reportDir = reports
+
+# Report classes to load
+Report.report1 = EncountersVSUniqueEncountersReport
+Report.report2 = ContactTimesReport
+Report.report3 = UniqueEncountersReport
+#Report.report4 = TotalEncountersReport
+#Report.report5 = EncountersVSUniqueEncountersReport
+#Report.report6 = ContactsDuringAnICTReport
+#Report.report7 = MessageStatsReport
+#Report.report8 = ContactsPerHourReport
